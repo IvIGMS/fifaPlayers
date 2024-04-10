@@ -76,13 +76,12 @@ public class PlayerServiceImpl implements PlayerService{
 
     public String getQueryPlayer(Filters filters) {
         StringBuilder query = new StringBuilder();
-        query.append(QueryConstants.SELECT).append(" * FROM fifa_players ");
+        query.append(QueryConstants.SELECT).append("* FROM fifa_players ");
 
         ApplyFilterCountries(query, filters.getCountries());
         ApplyLimits(query, filters.getAverageLimits(), QueryConstants.OVERALL_RATING);
         ApplyLimits(query, filters.getAgeLimits(), QueryConstants.AGE);
 
-        // todo el order by tiene que ser dinamico
         query.append(QueryConstants.ORDER_BY).append(filters.getOrderBy().getValue()).append(QueryConstants.DESC);
         return query.toString();
     }
