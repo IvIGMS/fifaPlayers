@@ -36,4 +36,9 @@ public class PlayersController {
     public ResponseEntity<PlayersGroupDTO> getPlayersGroup(@ParameterObject @org.springframework.web.bind.annotation.RequestParam GroupByEnum groupBy, @RequestBody Filters filters) {
         return ResponseEntity.ok(playerService.countPlayersByNationality(groupBy, filters));
     }
+
+    @GetMapping("/test")
+    public ResponseEntity<Object> getPlayertestById(){
+        return ResponseEntity.ok("Esto es un test");
+    }
 }
