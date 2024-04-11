@@ -21,9 +21,9 @@ import java.util.Optional;
 public class PlayerServiceImpl implements PlayerService{
 
     @PersistenceContext
-    private EntityManager entityManager;
+    private final EntityManager entityManager;
 
-    final PlayerRepository playerRepository;
+    private final PlayerRepository playerRepository;
 
     @Override
     public List<PlayerBasicDTO> getPlayers(Filters filters) {
@@ -55,7 +55,7 @@ public class PlayerServiceImpl implements PlayerService{
     }
 
     @Override
-    public PlayersGroupDTO countPlayersByNationality(GroupByEnum groupBy, Filters filters) {
+    public PlayersGroupDTO countPlayersGroup(GroupByEnum groupBy, Filters filters) {
 
         String query = getQueryGroup(groupBy.getValue(), filters);
 
@@ -76,13 +76,12 @@ public class PlayerServiceImpl implements PlayerService{
 
     public String getQueryPlayer(Filters filters) {
         StringBuilder query = new StringBuilder();
-        query.append(QueryConstants.SELECT).append(" * FROM fifa_players ");
+        query.append(QueryConstants.SELECT).append("* FROM fifa_players ");
 
         ApplyFilterCountries(query, filters.getCountries());
         ApplyLimits(query, filters.getAverageLimits(), QueryConstants.OVERALL_RATING);
         ApplyLimits(query, filters.getAgeLimits(), QueryConstants.AGE);
 
-        // todo el order by tiene que ser dinamico
         query.append(QueryConstants.ORDER_BY).append(filters.getOrderBy().getValue()).append(QueryConstants.DESC);
         return query.toString();
     }

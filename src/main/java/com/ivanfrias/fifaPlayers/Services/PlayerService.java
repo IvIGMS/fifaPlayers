@@ -11,5 +11,5 @@ import java.util.List;
 public interface PlayerService {
     List<PlayerBasicDTO> getPlayers(Filters filters);
     Player getPlayerById(Long id);
-    PlayersGroupDTO countPlayersByNationality(GroupByEnum groupBy, Filters filters);
+    PlayersGroupDTO countPlayersGroup(GroupByEnum groupBy, Filters filters);
 }
