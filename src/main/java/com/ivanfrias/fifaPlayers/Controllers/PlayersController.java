@@ -38,9 +38,4 @@ public class PlayersController {
             @RequestBody Filters filters) {
         return ResponseEntity.ok(playerService.countPlayersGroup(groupBy, filters));
     }
-
-    @GetMapping("/test")
-    public ResponseEntity<Object> getPlayertestById(){
-        return ResponseEntity.ok("Esto es un test");
-    }
 }
