@@ -21,9 +21,9 @@ import java.util.Optional;
 public class PlayerServiceImpl implements PlayerService{
 
     @PersistenceContext
-    private EntityManager entityManager;
+    private final EntityManager entityManager;
 
-    final PlayerRepository playerRepository;
+    private final PlayerRepository playerRepository;
 
     @Override
     public List<PlayerBasicDTO> getPlayers(Filters filters) {
@@ -55,7 +55,7 @@ public class PlayerServiceImpl implements PlayerService{
     }
 
     @Override
-    public PlayersGroupDTO countPlayersByNationality(GroupByEnum groupBy, Filters filters) {
+    public PlayersGroupDTO countPlayersGroup(GroupByEnum groupBy, Filters filters) {
 
         String query = getQueryGroup(groupBy.getValue(), filters);
 
